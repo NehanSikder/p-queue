@@ -1,4 +1,5 @@
 
+from exceptions import QueueFullError, QueueEmptyError
 
 class Queue():
 
@@ -6,7 +7,6 @@ class Queue():
 	def __init__(self, size):
 		#TODO make size parameter mandatory
 		#TODO make size parameter is > 0
-
 		self.size = size
 		self.arr = [None] * self.size
 		self.read_index = 0
@@ -15,9 +15,7 @@ class Queue():
 
 	def push(self, val):
 		if self.arr[self.write_index] != None:
-			#TODO throw an exception
-			print("Queue is full. Unable to add item")
-			return
+			raise QueueFullError
 		self.arr[self.write_index] = val
 		self.write_index = self.write_index + 1
 		if self.write_index == self.size:
@@ -26,9 +24,7 @@ class Queue():
 
 	def pop(self):
 		if self.arr[self.read_index] == None:
-			#TODO throw an exception
-			print("Queue is empty")
-			return None
+			raise QueueEmptyError
 		res = self.arr[self.read_index]
 		self.arr[self.read_index] = None
 		self.read_index = self.read_index + 1

@@ -1,12 +1,12 @@
 
-from exceptions import QueueFullError, QueueEmptyError
+from exceptions import QueueFullError, QueueEmptyError, QueueInitialiaztionError
 
 class Queue():
 
 
-	def __init__(self, size):
-		#TODO make size parameter mandatory
-		#TODO make size parameter is > 0
+	def __init__(self, size = None):
+		if size == None or size <= 0:
+			raise QueueInitialiaztionError
 		self.size = size
 		self.arr = [None] * self.size
 		self.read_index = 0

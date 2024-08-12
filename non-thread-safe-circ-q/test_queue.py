@@ -1,8 +1,21 @@
 from queue import Queue
-from exceptions import QueueFullError, QueueEmptyError
+from exceptions import QueueFullError, QueueEmptyError, QueueInitialiaztionError
 
 
 if __name__ == '__main__':
+
+	try:
+		x = Queue()
+	except QueueInitialiaztionError as e:
+		print(e.message)
+
+
+	try:
+		x = Queue(0)
+	except QueueInitialiaztionError as e:
+		print(e.message)
+
+
 	x = Queue(3)
 	try:
 		x.pop()
